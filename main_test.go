@@ -27,7 +27,7 @@ func isMagicSquare(solution [][]int) bool {
 }
 
 func TestSiamese(t *testing.T) {
-	numbers := []int{3, 5, 9, 11, 19, 21}
+	numbers := []int{3, 5, 9, 11, 19, 21, 101, 301, 501}
 	for _, i := range numbers {
 		output := Solve(i)
 		if isMagicSquare(output) != true {
@@ -37,7 +37,7 @@ func TestSiamese(t *testing.T) {
 }
 
 func TestDoubleEven(t *testing.T) {
-	numbers := []int{4, 8, 12, 16, 20}
+	numbers := []int{4, 8, 12, 16, 20, 40, 80, 200}
 	for _, i := range numbers {
 		output := Solve(i)
 		if isMagicSquare(output) != true {

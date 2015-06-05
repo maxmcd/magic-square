@@ -12,9 +12,7 @@ type squareIndex struct {
 	column int
 }
 
-func main() {
-
-}
+func main() {}
 
 func Solve(n int) [][]int {
 	s := square{n: n}
@@ -23,8 +21,7 @@ func Solve(n int) [][]int {
 	if n%4 == 0 {
 		return s.doubleEven()
 	} else if n%2 == 1 {
-		o := s.siamese()
-		return o
+		return s.siamese()
 	} else {
 		return [][]int{}
 	}
