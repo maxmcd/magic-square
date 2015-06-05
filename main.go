@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type square struct {
 	n      int
 	index  squareIndex
@@ -18,8 +16,6 @@ func main() {
 
 }
 
-var skipCount int
-
 func Solve(n int) [][]int {
 	s := square{n: n}
 
@@ -28,7 +24,6 @@ func Solve(n int) [][]int {
 		return s.doubleEven()
 	} else if n%2 == 1 {
 		o := s.siamese()
-		fmt.Println(skipCount)
 		return o
 	} else {
 		return [][]int{}
@@ -102,32 +97,38 @@ func (s *square) siamese() [][]int {
 func (s *square) findSiameseStart() int {
 	return (s.n - 1) / 2
 }
-
 func (s *square) findNextSiameseStep() {
-	sizeFromZero := s.n - 1
 	for {
 		previousIndex := s.index
-		if s.index.column < sizeFromZero {
-			s.index.column += 1
-		} else {
-			s.index.column = 0
-		}
-		if s.index.row >= 1 {
-			s.index.row -= 1
-		} else {
-			s.index.row = sizeFromZero
-		}
+		s.moveIndexUpAndRight()
 		if s.valueAtIndex() == 0 {
 			return
 		} else {
-			previousIndex.row += 1
-			if previousIndex.row > sizeFromZero {
-				previousIndex.row = 0
-			}
-			s.index = previousIndex
+			s.moveIndexDownOne(previousIndex)
 			if s.valueAtIndex() == 0 {
 				return
 			}
 		}
 	}
+}
+func (s *square) moveIndexUpAndRight() {
+	sizeFromZero := s.n - 1
+	if s.index.column < sizeFromZero {
+		s.index.column += 1
+	} else {
+		s.index.column = 0
+	}
+	if s.index.row >= 1 {
+		s.index.row -= 1
+	} else {
+		s.index.row = sizeFromZero
+	}
+}
+func (s *square) moveIndexDownOne(previousIndex squareIndex) {
+	sizeFromZero := s.n - 1
+	previousIndex.row += 1
+	if previousIndex.row > sizeFromZero {
+		previousIndex.row = 0
+	}
+	s.index = previousIndex
 }
