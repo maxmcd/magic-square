@@ -46,6 +46,14 @@ func TestDoubleEven(t *testing.T) {
 	}
 }
 
+func TestDoubleEvenLarge(t *testing.T) {
+	Solve(10000)
+}
+
+func TestSiameseLarge(t *testing.T) {
+	Solve(10001)
+}
+
 func BenchmarkSiamese(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Solve(101)
